@@ -1,0 +1,30 @@
+# Modèle entraîné / checkpoints lourds (
+best_model.pt
+*.pt
+*.bin
+*.safetensors
+
+# Dataset volumineux
+*.csv
+data/*.csv
+
+# Figures générées (optionnel : décommenter si vous ne voulez pas les versionner)
+# curves.png
+# confusion_matrix.png
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# Environnements virtuels
+.venv/
+venv/
+env/
+
+# Logs Weights & Biases
+wandb/
+
+# Fichiers système / éditeurs
+.DS_Store
+.ipynb_checkpoints/
+.vscode/
