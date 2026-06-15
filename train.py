@@ -123,7 +123,7 @@ def eval_epoch(model, dataloader, loss_fn, device):
 def main():
     # Point d'entrée : prépare les données, fine-tune BERT, sauvegarde le meilleur modèle.
     parser = argparse.ArgumentParser(description="Fine-tuning BERT (Series / Movie)")
-    parser.add_argument("--csv", type=str, default="netflix-rotten-tomatoes-metacritic-imdb 3.csv")
+    parser.add_argument("--csv", type=str, default="data/netflix-rotten-tomatoes-metacritic-imdb 3.csv")
     parser.add_argument("--model_name", type=str, default="bert-base-uncased")
     parser.add_argument("--max_length", type=int, default=128)
     parser.add_argument("--batch_size", type=int, default=16)
@@ -136,7 +136,12 @@ def main():
 
     # Reproductibilité
     set_seed(args.seed)
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if torch.backends.mps.is_available():
+        device = torch.device("mps")
+    elif torch.cuda.is_available():
+        device = torch.device("cuda")
+    else:
+        device = torch.device("cpu")
     print(f"[train] Device : {device}")
 
     # Suivi wandb
