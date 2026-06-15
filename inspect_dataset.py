@@ -158,8 +158,8 @@ def inspect_dataset():
 
     plt.close()
 
-    print("✓ token_length_distribution.png généré")
-    print("✓ class_distribution.png généré")
+    print(" token_length_distribution.png généré")
+    print(" class_distribution.png généré")
 
 
 if __name__ == "__main__":
