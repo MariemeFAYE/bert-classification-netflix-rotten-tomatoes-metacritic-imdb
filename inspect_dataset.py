@@ -1,15 +1,7 @@
 """
-inspect_dataset.py
-
+ 
 Analyse exploratoire du dataset avant le fine-tuning BERT.
-
-Objectifs :
-    - Nombre d'exemples
-    - Nombre de classes
-    - Distribution des classes
-    - Longueur des textes
-    - Exemples annotés
-    - Histogramme des longueurs
+ 
 """
 
 import pandas as pd
