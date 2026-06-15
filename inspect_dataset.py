@@ -15,9 +15,9 @@ MODEL_NAME = "bert-base-uncased"
 
 def inspect_dataset():
 
-    print("=" * 80)
+    print("=" * 85)
     print("CHARGEMENT DU DATASET")
-    print("=" * 80)
+    print("=" * 85)
 
     df = pd.read_csv(CSV_PATH)
 
@@ -32,9 +32,9 @@ def inspect_dataset():
 
     print("\n")
 
-    print("=" * 80)
+    print("=" * 85)
     print("CLASSES")
-    print("=" * 80)
+    print("=" * 85)
 
     classes = sorted(df["label"].unique())
 
@@ -43,9 +43,9 @@ def inspect_dataset():
 
     print("\n")
 
-    print("=" * 80)
+    print("=" * 85)
     print("DISTRIBUTION DES CLASSES")
-    print("=" * 80)
+    print("=" * 85)
 
     distribution = df["label"].value_counts()
 
@@ -62,9 +62,9 @@ def inspect_dataset():
 
     print("\n")
 
-    print("=" * 80)
+    print("=" * 85)
     print("EXEMPLES")
-    print("=" * 80)
+    print("=" * 85)
 
     for i in range(min(5, len(df))):
 
@@ -74,9 +74,9 @@ def inspect_dataset():
 
     print("\n")
 
-    print("=" * 80)
+    print("=" * 85)
     print("ANALYSE DES LONGUEURS")
-    print("=" * 80)
+    print("=" * 85)
 
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
@@ -104,9 +104,9 @@ def inspect_dataset():
 
     print("\n")
 
-    print("=" * 80)
+    print("=" * 85)
     print("RECOMMANDATION MAX_LENGTH")
-    print("=" * 80)
+    print("=" * 85)
 
     p95 = int(pd.Series(lengths).quantile(0.95))
 
@@ -121,9 +121,9 @@ def inspect_dataset():
 
     print("\n")
 
-    print("=" * 80)
+    print("=" * 85)
     print("SAUVEGARDE DES GRAPHIQUES")
-    print("=" * 80)
+    print("=" * 85)
 
     plt.figure(figsize=(8, 5))
 
