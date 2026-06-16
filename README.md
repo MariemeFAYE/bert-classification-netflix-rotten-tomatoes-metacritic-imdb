@@ -152,6 +152,8 @@ Lancement :
 ```bash
 python demo.py
 ```
+
+## Capture de l'interface Gradio en fonctionnement
 <img width="927" height="394" alt="image" src="https://github.com/user-attachments/assets/77b5d36a-f5aa-4aae-ac78-505cda24db7a" />
 
 # 10. Difficultés rencontrées
