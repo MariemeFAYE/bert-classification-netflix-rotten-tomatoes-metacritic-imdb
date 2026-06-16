@@ -46,13 +46,17 @@ Variable explicative : **Summary**
 
 <img src="class_distribution.png" width="600">
 
+Le Ratio de déséquilibre est 3.09 (>2:1).
+
+Stratégie face au déséquilibre : split train/validation stratifié (conserve la proportion des classes) et suivi du F1-core macro en plus de l'accuracy. La moyenne macro traite les deux classes à égalité, ce qui évalue honnetement la classe minoritaires (Series).
+l'accuracy seule serait trompeuse : un modèle prédisant toujours "Movie" atteindrait déjà ~75% en ratant toutes les series
 
 ## 2.4 Analyse des longueurs des textes
 
 | Mesure | Valeur |
 |---------|---------|
-| Longueur minimale | 64 tokens |
-| Longueur maximale | 32 tokens |
+| Longueur minimale | 7 tokens |
+| Longueur maximale | 64 tokens |
 | Longueur moyenne | 31.98  tokens |
 | 95e percentile | 38 tokens |
 
@@ -63,6 +67,7 @@ Choix retenu : max_length = 128
 # 3. Architecture du modèle
 
 Modèle utilisé : **bert-base-uncased**
+Ce modèle est choisi car les résumés sont en anglais; la variante "uncased" convient, la classe ne portant pas d'information discriminante. On récupère le vecteur du premier token de "last_hidden_state" comme representation de la séquence, puis une couche "nn.Linear(768, 2).
 
 Architecture :
 
@@ -98,6 +103,7 @@ Split stratifié.
 | Weight Decay | 0.01 |
 | Optimiseur | AdamW |
 | Max Length | 128 |
+| Seed | 42 (random, numpy, torch |
 
 # 7. Méthodologie d'entraînement
 
@@ -120,7 +126,7 @@ Sauvegarde du meilleur modèle selon la validation loss.
 ## Validation Accuracy 
     83,4 %
 ## F1-score
-    76,8 $
+    76,8 %
 ## Validation loss 
     61 %
 
@@ -146,11 +152,13 @@ Lancement :
 ```bash
 python demo.py
 ```
+<img width="927" height="394" alt="image" src="https://github.com/user-attachments/assets/77b5d36a-f5aa-4aae-ac78-505cda24db7a" />
 
 # 10. Difficultés rencontrées
 
-- Compréhension de BERT
-- Gestion de la tokenisation
+- Compréhension de BERT 
+- Gestion de la tokenisation et du masque d'attention
+- Gestion du déséquilibre des classes
 - Optimisation de l'entraînement
 - Déploiement avec Gradio
 
